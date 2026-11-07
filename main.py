@@ -77,3 +77,21 @@ SELECT orderDate,
        SUBSTR(orderDate, 1, 4) AS year
 FROM orderDetails
 """, conn)
+
+pd.read_sql("""
+SELECT orderDate,
+       SUBSTR(orderDate, 9, 2) AS day,
+       SUBSTR(orderDate, 6, 2) AS month,
+       SUBSTR(orderDate, 1, 4) AS year
+FROM orderDetails
+""", conn)
+
+pd.read_sql("""
+SELECT orderDate,
+       SUBSTR(orderDate, 9, 2) AS day,
+       SUBSTR(orderDate, 6, 2) AS month,
+       SUBSTR(orderDate, 1, 4) AS year
+FROM orderDetails
+""", conn)
+
+conn.close()
