@@ -19,7 +19,6 @@ SELECT employeeNumber, lastName
 FROM employees
 """, conn)
 
-df_first_five = None
 
 # STEP 3
 # Replace None with your code
@@ -63,9 +62,9 @@ FROM employees
 # STEP 8
 # Replace None with your code
 sum_total_price = pd.read_sql("""
-SELECT ROUND(priceEach * quantityOrdered) AS total_price
+SELECT SUM(ROUND(priceEach * quantityOrdered)) AS total_price
 FROM orderDetails
-""", conn).sum()
+""", conn)["total_price"]
 
 
 # STEP 9
@@ -75,23 +74,9 @@ SELECT orderDate,
        SUBSTR(orderDate, 9, 2) AS day,
        SUBSTR(orderDate, 6, 2) AS month,
        SUBSTR(orderDate, 1, 4) AS year
-FROM orderDetails
+FROM orders
 """, conn)
 
-pd.read_sql("""
-SELECT orderDate,
-       SUBSTR(orderDate, 9, 2) AS day,
-       SUBSTR(orderDate, 6, 2) AS month,
-       SUBSTR(orderDate, 1, 4) AS year
-FROM orderDetails
-""", conn)
 
-pd.read_sql("""
-SELECT orderDate,
-       SUBSTR(orderDate, 9, 2) AS day,
-       SUBSTR(orderDate, 6, 2) AS month,
-       SUBSTR(orderDate, 1, 4) AS year
-FROM orderDetails
-""", conn)
 
 conn.close()
